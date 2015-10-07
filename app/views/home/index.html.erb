@@ -1,4 +1,20 @@
 <h1>Welcome to Book-A-Doc</h1>
 <p>Your easy way to medical happiness.</p>
 
-<%= link_to 'Register to make your appointment', new_patient_profile_path, class: 'btn btn-primary' %>
+<% if user_signed_in? %>
+	<% if !current_user.patient_profile && (current_user.has_role? :patient) %>
+		<%= link_to 'Create your profile', new_patient_profile_path, class: 'btn btn-info' %>
+	<% end %>
+	<% if (current_user.has_role? :doctor) && !current_user.doctor_profile %>
+		<%= link_to 'Create your doctor profile', new_doctor_profile_path, class: 'btn btn-info' %>
+	<% end %>
+
+	<h3>Make an appointment with:</h3>
+	<% DoctorProfile.all.each do |doctor_profile| %>
+		<%= link_to doctor_profile.doctor_identity,new_appointment_path(doctor: doctor_profile.user_id), class: 'btn btn-info'  %>
+	<% end %>
+
+<% else %>
+
+	<%= link_to 'Register to make your appointment', new_user_registration_path(user_type: 'patient'), class: 'btn btn-primary' %>
+<% end %>

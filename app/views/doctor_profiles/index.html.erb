@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Doctor Profiles</h1>
+
+<table class="table table-hover">
+ <tbody>
+    <% @doctor_profiles.each do |doctor_profile| %>
+      <tr>
+        <td><%= image_tag doctor_profile.photo, width: '80px', class: 'img-responsive' %></td>
+        <td><%= link_to doctor_profile.doctor_identity, doctor_profile %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= image_tag @doctor_profile.photo, class: 'img-responsive img-thumbnail img-circle' %>
+        <p>
+          <%= @doctor_profile.title %> 
+          <%= @doctor_profile.first_name %>
+          <%= @doctor_profile.last_name %> 
+          <%= @doctor_profile.post_nominals %>
+        </p>
+        <p>
+          <strong>Bio:</strong>
+          <br>
+          <%= @doctor_profile.bio %>
+        </p>
+
+        <% if user_signed_in? %>
+          <% if current_user.doctor_profile == @doctor_profile %>
+            <%= link_to 'Edit', edit_doctor_profile_path(@doctor_profile), class: 'btn btn-warning btn-sm' %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,7 @@ gem 'simple_form'
 gem 'cancancan'
 gem 'rolify'
 gem 'country_select'
+gem 'carrierwave'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets

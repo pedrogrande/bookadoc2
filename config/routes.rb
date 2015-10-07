@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :appointments
+  resources :doctor_profiles
   resources :patient_profiles
   devise_for :users
   # get 'home/index'

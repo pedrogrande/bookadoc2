@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Doctor Profiles</h1>
+<h1>Doctor Profiles <% if params[:tag] %>- <%= params[:tag] %><% end %></h1>
+<% @tags.each do |tag| %>
+	<%= link_to tag.name, doctor_profiles_path(tag: tag.name), class: 'btn btn-info btn-sm' %>
+<% end %>
+<%= link_to 'All Doctors', doctor_profiles_path, class: 'btn btn-warning btn-sm' %>
+
 
 <table class="table table-hover">
  <tbody>

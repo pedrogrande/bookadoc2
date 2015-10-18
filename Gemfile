@@ -9,6 +9,11 @@ gem 'cancancan'
 gem 'rolify'
 gem 'country_select'
 gem 'carrierwave'
+gem 'friendly_id'
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'acts-as-taggable-on'
+gem 'awesome_rails_console'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets

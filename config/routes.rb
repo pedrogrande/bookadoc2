@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'admin', to: 'pages#admin'
+
+  get 'pages/contact'
+
+  get 'pages/about'
+
+  get 'pages/privacy'
+
   resources :appointments
   resources :doctor_profiles
   resources :patient_profiles

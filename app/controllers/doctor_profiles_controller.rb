@@ -1,10 +1,15 @@
 class DoctorProfilesController < ApplicationController
   before_action :set_doctor_profile, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :authenticate_user!, only: [:show, :index]
   # GET /doctor_profiles
   # GET /doctor_profiles.json
   def index
-    @doctor_profiles = DoctorProfile.all
+    if params[:tag]
+      @doctor_profiles = DoctorProfile.tagged_with(params[:tag])
+    else
+      @doctor_profiles = DoctorProfile.all
+    end
+    @tags = DoctorProfile.tag_counts_on(:tags)
   end
 
   # GET /doctor_profiles/1
@@ -64,11 +69,11 @@ class DoctorProfilesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_doctor_profile
-      @doctor_profile = DoctorProfile.find(params[:id])
+      @doctor_profile = DoctorProfile.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def doctor_profile_params
-      params.require(:doctor_profile).permit(:title, :first_name, :last_name, :photo, :bio, :post_nominals, :user_id)
+      params.require(:doctor_profile).permit(:title, :first_name, :last_name, :photo, :bio, :post_nominals, :user_id, :tag_list)
     end
 end
